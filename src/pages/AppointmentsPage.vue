@@ -1,6 +1,6 @@
 <template>
   <q-page padding>
-    AppointmentsPage
+    Appointments Page
   </q-page>
 </template>
 
