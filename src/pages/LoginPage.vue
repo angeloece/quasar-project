@@ -1,6 +1,6 @@
 <template>
   <q-page padding>
-    <!-- content -->
+    LoginPage
   </q-page>
 </template>
 

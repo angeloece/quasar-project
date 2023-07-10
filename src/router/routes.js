@@ -1,20 +1,20 @@
 
 const routes = [
   {
-    path: '/',
+    path: '/guest',
     component: () => import('layouts/GuestLayout.vue'),
     children: [
-      { path: '', component: () => import('pages/LoginPage.vue') },
-      { path: '', component: () => import('pages/RegistrationPage.vue') },
+      { path: 'login', component: () => import('pages/LoginPage.vue') },
+      { path: 'register', component: () => import('pages/RegistrationPage.vue') },
     ]
   },
   {
     path: '/auth',
     component: () => import('layouts/MainLayout.vue'),
     children: [
-      { path: 'Patient', component: () => import('pages/PatientPage.vue') },
-      { path: 'Appointments', component: () => import('pages/AppointmentPage.vue') },
-      { path: 'Chat', component: () => import('pages/ChatsPage.vue') },
+      { path: 'Patients', component: () => import('pages/PatientsPage.vue') },
+      { path: 'Appointments', component: () => import('pages/AppointmentsPage.vue') },
+      { path: 'Chats', component: () => import('pages/ChatsPage.vue') },
       { path: 'Consultations', component: () => import('pages/ConsultationsPage.vue') },
     ]
   },

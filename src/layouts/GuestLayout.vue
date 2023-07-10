@@ -1,7 +1,7 @@
 <template>
   <q-layout view="hHh lpR fFf">
 
-    <q-header elevated class="bg-primary text-white">
+    <q-header elevated class="bg-primary text-white" height-hint="98">
       <q-toolbar>
         <q-toolbar-title>
           <q-avatar>
@@ -10,6 +10,11 @@
           Title
         </q-toolbar-title>
       </q-toolbar>
+
+      <q-tabs align="left">
+        <q-route-tab to="/guest/login" label="Login Page" />
+        <q-route-tab to="/guest/register" label="Registration Page" />
+      </q-tabs>
     </q-header>
 
     <q-page-container>
