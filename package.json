@@ -11,7 +11,9 @@
     "test": "echo \"No test specified\" && exit 0",
     "dev": "quasar dev",
     "build": "quasar build",
-    "build:pwa": "quasar build -m pwa"
+    "build:pwa": "quasar build -m pwa",
+    "new:layout": "quasar new layout",
+    "new:page": "quasar new page"
   },
   "dependencies": {
     "@quasar/extras": "^1.16.4",
