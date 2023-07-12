@@ -2,7 +2,7 @@ import CustomInput from "components/CustomInput.vue";
 import CustomSelect from "components/CustomSelect.vue";
 import { requiredValidator, dateValidator } from "utils/validators";
 import { createInputFields, createTableColumns } from "models/functions";
-
+import { db } from "src/boot/firebaseConnection";
 const model = [
   {
     component: CustomSelect,
