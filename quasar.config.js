@@ -69,7 +69,7 @@ module.exports = configure(function (/* ctx */) {
       //publicPath: '/app/',
       // analyze: true,
       env: {
-        APP_NAME: "Quasar App",
+        APP_NAME: "Adela TeleKonsulta",
         FIREBASE_API_KEY: "AIzaSyAViMrh6lhDp-U4BsgLzca898H6HlUB1Ps",
         FIREBASE_AUTH_DOMAIN: "ghitap-telemed-25e33.firebaseapp.com",
         FIREBASE_PROJECT_ID: "ghitap-telemed-25e33",

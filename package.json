@@ -2,7 +2,7 @@
   "name": "ghitap-telemed-app",
   "version": "0.0.1",
   "description": "A Quasar Project",
-  "productName": "GHITAP Telemedicine App",
+  "productName": "Adela TeleKonsulta",
   "author": "DOT28 <jbaquino3@up.edu.ph>",
   "private": true,
   "scripts": {
