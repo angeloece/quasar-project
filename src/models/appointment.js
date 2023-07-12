@@ -2,7 +2,9 @@ import CustomInput from "components/CustomInput.vue";
 import CustomSelect from "components/CustomSelect.vue";
 import { requiredValidator, dateValidator } from "utils/validators";
 import { createInputFields, createTableColumns } from "models/functions";
+import { collection, getDocs, addDoc, doc, setDoc, deleteDoc } from "firebase/firestore";
 import { db } from "src/boot/firebaseConnection";
+
 const model = [
   {
     component: CustomSelect,
@@ -47,62 +49,31 @@ export const createFields = (overrides = []) => createInputFields(model, overrid
 
 export const createColumns = () => createTableColumns(model);
 
-export const getAppointments = () => {
-  return new Promise((resolve) => {
-    setTimeout(function () {
-      resolve(JSON.parse(localStorage.getItem("appointments") || "[]"));
-    }, 1000);
+export const getAppointments = async () => {
+  const querySnapshot = await getDocs(collection(db, "appointments"));
+
+  let appointments = [];
+  querySnapshot.forEach((doc) => {
+    appointments.push({ ...doc.data(), id: doc.id });
   });
+
+  return appointments;
 };
 
-export const createAppointment = (data) => {
-  return new Promise((resolve) => {
-    setTimeout(async () => {
-      let appointments = await getAppointments();
-      data.id = appointments.length + 1;
-      appointments.push(data);
-      localStorage.setItem("appointments", JSON.stringify(appointments));
-      resolve(data);
-    }, 1000);
-  });
+export const createAppointment = async (data) => {
+  const docRef = await addDoc(collection(db, "appointments"), data);
+
+  return docRef.id
 };
 
-export const updateAppointment = (id, data) => {
-  return new Promise((resolve, reject) => {
-    setTimeout(async () => {
-      let appointments = await getAppointments();
+export const updateAppointment = async (id, data) => {
+  await setDoc(doc(db, "appointments", id), data);
 
-      let index = appointments.findIndex(
-        (appointment) => appointment.id === id
-      );
-      if (index === -1) {
-        reject("Appointment not found");
-        return;
-      }
-
-      appointments[index] = { ...appointments[index], ...data };
-      localStorage.setItem("appointments", JSON.stringify(appointments));
-      resolve(appointments[index]);
-    }, 1000);
-  });
+  return id
 };
 
-export const deleteAppointment = (id) => {
-  return new Promise((resolve, reject) => {
-    setTimeout(async () => {
-      let appointments = await getAppointments();
+export const deleteAppointment = async (id, data) => {
+  await deleteDoc(doc(db, "appointments", id));
 
-      let index = appointments.findIndex(
-        (appointment) => appointment.id === id
-      );
-      if (index === -1) {
-        reject("Appointment not found");
-        return;
-      }
-
-      appointments.splice(index, 1);
-      localStorage.setItem("appointments", JSON.stringify(appointments));
-      resolve(appointments[index]);
-    }, 1000);
-  });
+  return id
 };

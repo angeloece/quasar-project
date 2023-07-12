@@ -75,7 +75,8 @@ module.exports = configure(function (/* ctx */) {
         FIREBASE_PROJECT_ID: "ghitap-telemed-25e33",
         FIREBASE_STORAGE_BUCKET: "ghitap-telemed-25e33.appspot.com",
         FIREBASE_MESSAGING_SENDER_ID: "822968773150",
-        FIREBASE_APP_ID: "1:822968773150:web:e75fbc6763fd9425339c0f"
+        FIREBASE_APP_ID: "1:822968773150:web:e75fbc6763fd9425339c0f",
+        API_URL: "http://localhost:8000"
       },
       // rawDefine: {}
       // ignorePublicFolder: true,
