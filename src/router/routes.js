@@ -1,30 +1,72 @@
-
-const routes = [
+export default [
   {
-    path: '/guest',
-    component: () => import('layouts/GuestLayout.vue'),
+    path: "/guest",
+    component: () => import("layouts/GuestLayout.vue"),
     children: [
-      { path: 'login', component: () => import('pages/LoginPage.vue') },
-      { path: 'register', component: () => import('pages/RegistrationPage.vue') },
-    ]
+      {
+        path: "",
+        redirect: { name: "login" },
+      },
+      {
+        path: "login",
+        name: "login",
+        component: () => import("pages/login/IndexPage.vue"),
+      },
+      {
+        path: "register",
+        name: "register",
+        component: () => import("pages/registration/IndexPage.vue"),
+      },
+    ],
   },
   {
-    path: '/auth',
-    component: () => import('layouts/MainLayout.vue'),
+    path: "/auth",
+    component: () => import("layouts/MainLayout.vue"),
     children: [
-      { path: 'Patients', component: () => import('pages/PatientsPage.vue') },
-      { path: 'Appointments', component: () => import('pages/AppointmentsPage.vue') },
-      { path: 'Chats', component: () => import('pages/ChatsPage.vue') },
-      { path: 'Consultations', component: () => import('pages/ConsultationsPage.vue') },
-    ]
+      {
+        path: "",
+        redirect: { name: "patients" },
+      },
+      {
+        path: "patients",
+        name: "patients",
+        component: () => import("pages/patients/IndexPage.vue"),
+        meta: {
+          label: "Patients",
+          icon: "personal_injury",
+        },
+      },
+      {
+        path: "appointments",
+        name: "appointments",
+        component: () => import("pages/appointments/IndexPage.vue"),
+        meta: {
+          label: "Appointments",
+          icon: "event",
+        },
+      },
+      {
+        path: "chats",
+        name: "chats",
+        component: () => import("pages/chats/IndexPage.vue"),
+        meta: {
+          label: "Chats",
+          icon: "question_answer",
+        },
+      },
+      {
+        path: "consultations",
+        name: "consultations",
+        component: () => import("pages/consultations/IndexPage.vue"),
+        meta: {
+          label: "Consultations",
+          icon: "medical_services",
+        },
+      },
+    ],
   },
-
-  // Always leave this as last one,
-  // but you can also remove it
   {
-    path: '/:catchAll(.*)*',
-    component: () => import('pages/ErrorNotFound.vue')
-  }
-]
-
-export default routes
+    path: "/:catchAll(.*)*",
+    component: () => import("pages/ErrorNotFound.vue"),
+  },
+];

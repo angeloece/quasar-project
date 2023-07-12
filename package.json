@@ -1,9 +1,9 @@
 {
-  "name": "quasar-project",
+  "name": "ghitap-telemed-app",
   "version": "0.0.1",
   "description": "A Quasar Project",
-  "productName": "Quasar App",
-  "author": "MICHAEL ANGELO GRUMEZ OPLO <angeloece@gmail.com>",
+  "productName": "GHITAP Telemedicine App",
+  "author": "DOT28 <jbaquino3@up.edu.ph>",
   "private": true,
   "scripts": {
     "lint": "eslint --ext .js,.vue ./",
@@ -11,19 +11,21 @@
     "test": "echo \"No test specified\" && exit 0",
     "dev": "quasar dev",
     "build": "quasar build",
-    "build:pwa": "quasar build -m pwa",
-    "new:layout": "quasar new layout",
-    "new:page": "quasar new page"
+    "build:pwa": "quasar build -m pwa"
   },
   "dependencies": {
-    "@quasar/extras": "^1.16.4",
-    "axios": "^1.4.0",
+    "@quasar/extras": "^1.0.0",
+    "axios": "^0.21.1",
+    "firebase": "^10.0.0",
+    "pinia": "^2.0.11",
     "quasar": "^2.6.0",
     "vue": "^3.0.0",
+    "vue-i18n": "^9.0.0",
     "vue-router": "^4.0.0"
   },
   "devDependencies": {
-    "@quasar/app-vite": "^1.3.0",
+    "@intlify/vite-plugin-vue-i18n": "^3.3.1",
+    "@quasar/app-vite": "^1.0.0",
     "autoprefixer": "^10.4.2",
     "eslint": "^8.10.0",
     "eslint-config-prettier": "^8.1.0",
@@ -32,7 +34,7 @@
     "prettier": "^2.5.1"
   },
   "engines": {
-    "node": "^18 || ^16 || ^14.19",
+    "node": "^20 || ^18 || ^16 || ^14.19",
     "npm": ">= 6.13.4",
     "yarn": ">= 1.21.1"
   }
