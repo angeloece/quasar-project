@@ -7,6 +7,7 @@ export const createInputFields = (model, overrides = []) => {
     model: field.model,
     attrs: field.attrs,
     col: field.col,
+    authOnly: field.authOnly || false,
   }))
 
   return overrides.reduce((fields, override) => {

@@ -1,19 +1,32 @@
 <script setup>
-import { ref, computed, onMounted } from "vue";
+import { ref, computed, onMounted, onUnmounted } from "vue";
 import ChatComponent from "components/ChatComponent.vue";
-import { getChats, createChat } from "models/chat";
+import { listenChats, createChat } from "models/chat";
 
 const chats = ref([]);
 const selected_id = ref(null);
+let unsubscribe = null;
+
+const user = computed(() => JSON.parse(localStorage.getItem("user")));
+
+const loadMessages = async () => {
+  unsubscribe = listenChats(user.value.uid, (data) => {
+    chats.value = data;
+  });
+};
 
 onMounted(async () => {
-  chats.value = await getChats(1234);
+  loadMessages();
+});
+
+onUnmounted(() => {
+  unsubscribe();
 });
 
 const inbox = computed(() => {
   const all = chats.value.map((c) => ({
-    name: c.sender_id === 1234 ? c.receiver_name : c.sender_name,
-    id: c.sender_id === 1234 ? c.receiver_id : c.sender_id,
+    name: c.sender_id === user.value.uid ? c.receiver_name : c.sender_name,
+    id: c.sender_id === user.value.uid ? c.receiver_id : c.sender_id,
   }));
 
   const uniqueSet = new Set(all.map((item) => JSON.stringify(item)));
@@ -36,15 +49,14 @@ const sendMessage = async (text) => {
   await createChat(
     text,
     {
-      id: 1234,
-      name: "Dr. John Doe",
+      id: user.value.uid,
+      name: user.value.displayName || user.value.email,
     },
     {
       id: selected_id.value,
       name: inbox.value.find((i) => i.id === selected_id.value).name,
     }
   );
-  chats.value = await getChats(1234);
 };
 </script>
 

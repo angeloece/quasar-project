@@ -19,6 +19,10 @@ const props = defineProps({
     type: Object,
     default: () => ({}),
   },
+  guest: {
+    type: Boolean,
+    default: () => false,
+  },
 });
 
 const emit = defineEmits(["submit", "update:modelValue"]);
@@ -50,7 +54,9 @@ const model = computed({
 
   <q-form ref="form" class="row" @submit.prevent="onSubmit">
     <div
-      v-for="field in props.fields"
+      v-for="field in props.fields.filter(
+        (f) => !props.guest || (props.guest && !f.authOnly)
+      )"
       :key="field.model"
       :class="`col-${field.col || 12} q-mb-md`"
     >

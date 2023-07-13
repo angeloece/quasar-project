@@ -49,9 +49,11 @@ module.exports = configure(function (/* ctx */) {
 
     // Full list of options: https://v2.quasar.dev/quasar-cli-vite/quasar-config-js#build
     build: {
+      env: require('dotenv').config().parsed,
       target: {
         browser: ["es2019", "edge88", "firefox78", "chrome87", "safari13.1"],
         node: "node16",
+
       },
 
       alias: {
@@ -68,16 +70,7 @@ module.exports = configure(function (/* ctx */) {
 
       //publicPath: '/app/',
       // analyze: true,
-      env: {
-        APP_NAME: "Adela TeleKonsulta",
-        FIREBASE_API_KEY: "AIzaSyAViMrh6lhDp-U4BsgLzca898H6HlUB1Ps",
-        FIREBASE_AUTH_DOMAIN: "ghitap-telemed-25e33.firebaseapp.com",
-        FIREBASE_PROJECT_ID: "ghitap-telemed-25e33",
-        FIREBASE_STORAGE_BUCKET: "ghitap-telemed-25e33.appspot.com",
-        FIREBASE_MESSAGING_SENDER_ID: "822968773150",
-        FIREBASE_APP_ID: "1:822968773150:web:e75fbc6763fd9425339c0f",
-        API_URL: "http://localhost:8000"
-      },
+
       // rawDefine: {}
       // ignorePublicFolder: true,
       // minify: false,
